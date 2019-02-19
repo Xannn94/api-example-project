@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Http\Request;
+use \Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +13,8 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::get('products/get-active-list', 'API\ProductController@getActiveProducts')->name('products.active-list');
+Route::resource('products', 'API\ProductController')->only([
+    'index', 'show'
+]);
+
